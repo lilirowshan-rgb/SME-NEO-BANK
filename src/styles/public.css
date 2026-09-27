@@ -136,101 +136,6 @@
   flex-wrap: wrap;
 }
 
-.hero-visual {
-  position: relative;
-  height: 440px;
-}
-
-.hero-visual .photo-slot {
-  position: absolute;
-  inset: 0 70px 0 30px;
-}
-
-.hero-card {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  width: 280px;
-  height: 176px;
-  padding: 20px 22px;
-  border-radius: 18px;
-  background: var(--navy);
-  color: #fff;
-  box-shadow: var(--shadow-float);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.hero-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.hero-card-mark {
-  height: 20px !important;
-  filter: brightness(0) invert(1);
-}
-
-.hero-card .logo-badge {
-  font-size: 11px;
-  padding: 2px 8px;
-}
-
-.hero-chip {
-  order: 2;
-  width: 34px;
-  height: 26px;
-  border-radius: 6px;
-  background: var(--gold);
-}
-
-.hero-card-number {
-  font-size: 15px;
-  letter-spacing: 1px;
-  direction: ltr;
-  text-align: left;
-}
-
-.hero-card-foot {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: #c9d3e6;
-}
-
-.hero-note {
-  position: absolute;
-  top: 200px;
-  left: 0;
-  width: 230px;
-  padding: 18px 20px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: var(--shadow-float);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.hero-note-label {
-  font-size: 12px;
-  color: var(--text-3);
-}
-
-.hero-note-amount {
-  font-size: 22px;
-  font-weight: 900;
-}
-
-.hero-note-text {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--green);
-  line-height: 1.7;
-}
-
 /* ---------- Stats ---------- */
 
 .stats-card {
@@ -1093,9 +998,6 @@
   .faq-hero h1 {
     font-size: 28px;
   }
-  .hero-visual {
-    height: 380px;
-  }
   .stats-grid,
   .panel-grid,
   .reviews,
@@ -1181,33 +1083,10 @@
     width: 100%;
   }
 
-  .hero-visual {
-    height: 330px;
-  }
 
-  .hero-visual .photo-slot {
-    inset: 0 18px 0 18px;
-    font-size: 0;
-    padding: 0;
-  }
 
-  .hero-card {
-    top: 24px;
-    width: 250px;
-    height: 156px;
-    padding: 16px 18px;
-  }
 
-  .hero-note {
-    top: auto;
-    bottom: 22px;
-    width: 210px;
-    padding: 14px 16px;
-  }
 
-  .hero-note-amount {
-    font-size: 19px;
-  }
 
   /* Stats: 2 × 2. */
   .stats-card {

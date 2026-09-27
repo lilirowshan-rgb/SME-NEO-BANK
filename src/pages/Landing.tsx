@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Chips from '../components/Chips';
+import HeroStore from '../components/HeroStore';
 import PlusIcon from '../components/PlusIcon';
 import PublicHeader from '../components/PublicHeader';
 import blueMark from '../assets/digipay-blue.png';
@@ -45,28 +46,7 @@ export default function Landing() {
               </Link>
             </div>
           </div>
-          <div className="hero-visual" aria-hidden="true">
-            <div className="photo-slot">[عکس: فروشنده در حال بسته‌بندی سفارش‌ها در یک انبار کوچک]</div>
-            <div className="hero-card">
-              <div className="hero-card-top">
-                <span className="hero-chip" />
-                <span className="logo">
-                  <img src={blueMark} alt="" className="hero-card-mark" />
-                  <span className="logo-badge logo-badge-blue">بیزینس</span>
-                </span>
-              </div>
-              <div className="hero-card-number">۶۰۳۷ •••• •••• ۲۰۴۱</div>
-              <div className="hero-card-foot">
-                <span>کارت نقدی کیف پول کسب‌وکار</span>
-                <span>[نام فروشگاه]</span>
-              </div>
-            </div>
-            <div className="hero-note">
-              <div className="hero-note-label">تسویه زودهنگام</div>
-              <div className="hero-note-amount">[مبلغ] تومان</div>
-              <div className="hero-note-text">امروز به کیف پول کسب‌وکار شما واریز شد</div>
-            </div>
-          </div>
+          <HeroStore />
         </section>
 
         {/* Stats */}

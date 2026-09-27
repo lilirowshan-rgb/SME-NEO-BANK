@@ -10,6 +10,7 @@ import '@fontsource/vazirmatn/900.css';
 import './styles/base.css';
 import './styles/panel.css';
 import './styles/public.css';
+import './styles/hero.css';
 import './styles/loan.css';
 
 createRoot(document.getElementById('root')!).render(

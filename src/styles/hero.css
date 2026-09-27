@@ -1,0 +1,321 @@
+/* ---------- Animated storefront hero ---------- */
+
+.hs {
+  position: relative;
+  padding-top: 30px;
+  isolation: isolate;
+}
+
+.hs-awning {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: -10px;
+  width: calc(100% + 20px);
+  height: 74px;
+  z-index: 3;
+  filter: drop-shadow(0 8px 10px rgba(0, 12, 60, 0.35));
+  transform-origin: top center;
+  animation: hs-sway 7s ease-in-out infinite;
+}
+
+.hs-panel {
+  position: relative;
+  height: 500px;
+  border-radius: 0 0 28px 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 70% at 50% 28%, rgba(60, 90, 255, 0.35), transparent 60%),
+    linear-gradient(180deg, #03066b 0%, #020448 55%, #01022a 100%);
+  box-shadow: 0 30px 60px -20px rgba(3, 6, 107, 0.55);
+}
+
+/* faint shop icons drifting in the background */
+.hs-icon {
+  position: absolute;
+  color: #6f86ff;
+  opacity: 0.16;
+  translate: -50% -50%;
+  animation: hs-drift 9s ease-in-out infinite;
+}
+
+.hs-copy {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+}
+
+.hs-kicker {
+  font-size: 15px;
+  font-weight: 700;
+  color: #dfe6ff;
+}
+
+.hs-glow {
+  margin-top: 6px;
+  font-size: 38px;
+  font-weight: 900;
+  color: #030660;
+  -webkit-text-stroke: 1.2px #ffe7a3;
+  text-shadow: 0 0 4px #ffe7a3, 0 0 14px #f2c14e, 0 0 30px rgba(242, 193, 78, 0.7);
+  animation: hs-flicker 5s linear infinite;
+}
+
+.hs-card {
+  position: absolute;
+  left: 50%;
+  top: 188px;
+  width: 290px;
+  height: 180px;
+  margin-left: -145px;
+  padding: 20px 22px;
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #1a3cff 0%, #0b1b3f 70%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+  overflow: hidden;
+  animation: hs-float 6s ease-in-out infinite;
+}
+
+/* moving shine across the card */
+.hs-card::after {
+  content: '';
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.22) 50%, transparent 58%);
+  transform: translateX(-60%);
+  animation: hs-shine 4.5s ease-in-out infinite;
+}
+
+.hs-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hs-card-chip {
+  order: 2;
+  width: 36px;
+  height: 27px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #f7d77a, #d9a632);
+}
+
+.hs-card-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hs-card-brand img {
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.hs-card-brand span {
+  padding: 2px 8px;
+  border-radius: 7px;
+  background: #fff;
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.hs-card-number {
+  direction: ltr;
+  text-align: left;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.hs-card-foot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #c9d3e6;
+}
+
+/* rotating live notification */
+.hs-note {
+  position: absolute;
+  left: 50%;
+  bottom: 36px;
+  width: 330px;
+  margin-left: -165px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 4;
+  animation: hs-note-in 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+.hs-note-icon {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--blue);
+  box-shadow: 0 0 0 0 rgba(0, 62, 255, 0.5);
+  animation: hs-pulse 1.8s ease-out infinite;
+}
+
+.hs-note-green .hs-note-icon {
+  background: #1e9c5a;
+  --hs-ring: rgba(30, 156, 90, 0.55);
+}
+
+.hs-note-gold .hs-note-icon {
+  background: #f39d38;
+  --hs-ring: rgba(243, 157, 56, 0.55);
+}
+
+.hs-note-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.hs-note-label {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.hs-note-amount {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.hs-note-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.hs-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  translate: -50% 0;
+  display: flex;
+  gap: 5px;
+  z-index: 4;
+}
+
+.hs-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: width 0.3s, background 0.3s;
+}
+
+.hs-dots span.on {
+  width: 18px;
+  background: #fff;
+}
+
+@keyframes hs-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(0.35deg) translateY(1px); }
+}
+
+@keyframes hs-drift {
+  0%, 100% { transform: translateY(0); opacity: 0.12; }
+  50% { transform: translateY(-10px); opacity: 0.24; }
+}
+
+@keyframes hs-float {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-12px) rotate(-2deg); }
+}
+
+@keyframes hs-shine {
+  0%, 55% { transform: translateX(-60%); }
+  100% { transform: translateX(60%); }
+}
+
+@keyframes hs-flicker {
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.75; }
+  95% { opacity: 1; }
+  96% { opacity: 0.85; }
+}
+
+@keyframes hs-note-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hs-pulse {
+  0% { box-shadow: 0 0 0 0 var(--hs-ring, rgba(0, 62, 255, 0.55)); }
+  70% { box-shadow: 0 0 0 12px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.hs-still *,
+.hs-still {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs *,
+  .hs {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .hs {
+    padding-top: 22px;
+  }
+  .hs-awning {
+    height: 54px;
+  }
+  .hs-panel {
+    height: 440px;
+    border-radius: 0 0 22px 22px;
+  }
+  .hs-copy {
+    top: 52px;
+  }
+  .hs-kicker {
+    font-size: 13px;
+  }
+  .hs-glow {
+    font-size: 29px;
+  }
+  .hs-card {
+    top: 150px;
+    width: 250px;
+    height: 156px;
+    margin-left: -125px;
+    padding: 16px 18px;
+  }
+  .hs-note {
+    width: calc(100% - 32px);
+    left: 16px;
+    margin-left: 0;
+    bottom: 30px;
+  }
+  .hs-note-amount {
+    font-size: 18px;
+  }
+}
