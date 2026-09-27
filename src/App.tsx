@@ -13,6 +13,8 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import SupplierJoin from './pages/SupplierJoin';
+import Suppliers from './pages/Suppliers';
 import Tax from './pages/Tax';
 
 export default function App() {
@@ -24,10 +26,12 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/join/supplier" element={<SupplierJoin />} />
         <Route element={<PanelLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/loan" element={<LoanPage />} />
           <Route path="/cash" element={<Cash />} />
+          <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/accounting" element={<Accounting />} />
           <Route path="/tax" element={<Tax />} />
           <Route path="/ads" element={<Ads />} />

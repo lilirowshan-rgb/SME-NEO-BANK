@@ -13,6 +13,8 @@ All numbers, rates and names in `[brackets]` are sample placeholders from the de
 | `/faq` | Searchable, filterable FAQ |
 | `/dashboard` | Balances, early settlement calculator, 6-month cash flow chart, transactions, upcoming payments |
 | `/loan` | Pre-approved loan offer → review → digital signature → disbursed |
+| `/suppliers` | Pay-to-supplier (reverse factoring): add/invite suppliers, pay an invoice early at a discount, merchant pays the full amount at the due date |
+| `/join/supplier` | Invitation page a supplier opens from SMS to join Digipay and receive the early payment |
 | `/cash` | Sub-wallets, 30-day balance forecast, automatic rules, bills, bank accounts |
 | `/accounting` | P&L by period, expenses by category, transactions to review, wholesale invoices, CSV export |
 | `/tax` | Moadian e-invoices (filter + resubmit rejected), VAT summary & payment, tax calendar |

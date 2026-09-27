@@ -56,3 +56,12 @@ it('schedules a 5-day early settlement without changing the wallet yet', async (
 function fmt(n: number) {
   return n.toLocaleString('fa-IR');
 }
+
+it('pays a network supplier the discounted amount right away', async () => {
+  const { default: Suppliers } = await import('./Suppliers');
+  const user = userEvent.setup();
+  renderAt(<Suppliers />);
+  expect(screen.getByText('۹۵٬۰۶۸٬۴۹۳ تومان')).toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'تأیید فاکتور و پرداخت به تأمین‌کننده' }));
+  expect(screen.getAllByText('۹۵٬۰۶۸٬۴۹۳').length).toBeGreaterThan(0);
+});
