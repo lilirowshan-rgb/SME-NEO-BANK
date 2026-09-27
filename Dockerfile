@@ -1,10 +1,10 @@
 # Production image: builds the Vite app, then serves the static files with nginx on port 80.
 #
-# Base images come from Docker Hub by default. On Hamravesh Darkube (or anywhere Docker Hub is
-# slow/blocked), build with the mirror instead:
-#   --build-arg REGISTRY=hub.hamdocker.ir/library
+# Base images come from Hamravesh's Docker Hub mirror by default, because Docker Hub is often
+# blocked or rate-limited from Hamravesh Darkube. Outside Iran, build with Docker Hub instead:
+#   docker build --build-arg REGISTRY=docker.io/library -t sme-neo-bank .
 # To use an npm mirror, also pass: --build-arg NPM_REGISTRY=https://<your-npm-mirror>/
-ARG REGISTRY=docker.io/library
+ARG REGISTRY=hub.hamdocker.ir/library
 
 FROM ${REGISTRY}/node:22-alpine AS build
 ARG NPM_REGISTRY=

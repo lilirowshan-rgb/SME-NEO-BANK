@@ -55,12 +55,12 @@ docker build -t sme-neo-bank .
 docker run -p 8080:80 sme-neo-bank      # http://localhost:8080
 ```
 
-If Docker Hub is unreachable or rate-limited (common inside Iran), point the base images at a mirror:
-`--build-arg REGISTRY=hub.hamdocker.ir/library`. For an npm mirror add `--build-arg NPM_REGISTRY=<url>`.
+Base images are pulled from Hamravesh's Docker Hub mirror (`hub.hamdocker.ir/library`) by default, so the
+build works on Darkube without extra settings. Outside Iran, add `--build-arg REGISTRY=docker.io/library`.
+For an npm mirror add `--build-arg NPM_REGISTRY=<url>`.
 
 **Darkube:** create an app from this Git repository with the Dockerfile build (Dockerfile path `Dockerfile`,
-build context `.`), set the **port to 80**, add the `REGISTRY` build arg above if the build can't pull images,
-point the health check at `/healthz`, then attach your domain and enable HTTPS in the app's domain settings.
+build context `.`), set the **port to 80**, point the readiness probe at `/healthz`, then attach your domain and enable HTTPS in the app's domain settings.
 
 ## Code map
 
