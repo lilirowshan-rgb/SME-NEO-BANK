@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fa } from '../lib/format';
+import { fa, toLatinDigits } from '../lib/format';
 import {
   AMOUNT_STEP_MILLION,
   ANNUAL_RATE_PERCENT,
@@ -47,7 +47,7 @@ export default function LoanPage() {
           <h1 className="page-title">وام و اعتبار</h1>
           <div className="page-subtitle">پیشنهادها بر اساس سابقه فروش شما در دیجی‌کالا و دیجی‌پی محاسبه شده‌اند.</div>
         </div>
-        <span className="badge-warning">نرخ‌ها و اعداد نمونه</span>
+        <span className="badge badge-gold">نرخ‌ها و اعداد نمونه</span>
       </header>
 
       <ol aria-label="مراحل دریافت وام" className="stepper">
@@ -80,7 +80,7 @@ export default function LoanPage() {
                 </Link>
               </div>
 
-              <div className="field">
+              <div className="loan-field">
                 <div className="amount-row">
                   <label htmlFor="amt" className="field-title">
                     مبلغ وام
@@ -105,7 +105,7 @@ export default function LoanPage() {
                 </div>
               </div>
 
-              <div className="field">
+              <div className="loan-field">
                 <div className="field-title">مدت بازپرداخت</div>
                 <div className="choice-grid choice-grid-3">
                   {TERM_OPTIONS.map((t) => (
@@ -122,7 +122,7 @@ export default function LoanPage() {
                 </div>
               </div>
 
-              <div className="field">
+              <div className="loan-field">
                 <div className="field-title">روش بازپرداخت</div>
                 <div className="choice-grid choice-grid-2">
                   {REPAYMENT_METHODS.map((m) => (
@@ -313,9 +313,4 @@ export default function LoanPage() {
       )}
     </div>
   );
-}
-
-/** Converts Persian/Arabic-Indic digits to ASCII so OTPs typed on a Persian keyboard work. */
-function toLatinDigits(s: string): string {
-  return s.replace(/[۰-۹٠-٩]/g, (d) => String(d.charCodeAt(0) & 0xf));
 }

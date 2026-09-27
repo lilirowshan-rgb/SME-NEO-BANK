@@ -7,6 +7,7 @@ export const NAV_ITEMS: NavItem[] = [
   { path: '/dashboard', label: 'داشبورد و پرداخت‌ها' },
   { path: '/loan', label: 'وام و اعتبار' },
   { path: '/cash', label: 'مدیریت نقدینگی' },
+  { path: '/accounting', label: 'حسابداری' },
   { path: '/tax', label: 'مالیات و سامانه مودیان' },
   { path: '/insights', label: 'بینش کسب‌وکار' },
   { path: '/profile', label: 'پروفایل و اشخاص' },

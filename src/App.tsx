@@ -1,23 +1,39 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import { Route, Routes } from 'react-router-dom';
+import PanelLayout from './components/PanelLayout';
+import ScrollManager from './components/ScrollManager';
+import Accounting from './pages/Accounting';
+import Cash from './pages/Cash';
+import Dashboard from './pages/Dashboard';
+import Faq from './pages/Faq';
+import Insights from './pages/Insights';
+import Landing from './pages/Landing';
 import LoanPage from './pages/LoanPage';
-import PlaceholderPage from './pages/PlaceholderPage';
-import { NAV_ITEMS } from './lib/nav';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+import Profile from './pages/Profile';
+import Signup from './pages/Signup';
+import Tax from './pages/Tax';
 
 export default function App() {
   return (
-    <div className="app-shell">
-      <Sidebar />
-      <main className="app-main">
-        <Routes>
-          <Route path="/" element={<Navigate to="/loan" replace />} />
+    <>
+      <ScrollManager />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route element={<PanelLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/loan" element={<LoanPage />} />
-          {NAV_ITEMS.filter((item) => item.path !== '/loan').map((item) => (
-            <Route key={item.path} path={item.path} element={<PlaceholderPage title={item.label} />} />
-          ))}
-          <Route path="*" element={<PlaceholderPage title="صفحه پیدا نشد" />} />
-        </Routes>
-      </main>
-    </div>
+          <Route path="/cash" element={<Cash />} />
+          <Route path="/accounting" element={<Accounting />} />
+          <Route path="/tax" element={<Tax />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
