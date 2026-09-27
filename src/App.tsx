@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import PanelLayout from './components/PanelLayout';
 import ScrollManager from './components/ScrollManager';
 import Accounting from './pages/Accounting';
+import Ads from './pages/Ads';
 import Cash from './pages/Cash';
 import Dashboard from './pages/Dashboard';
 import Faq from './pages/Faq';
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/cash" element={<Cash />} />
           <Route path="/accounting" element={<Accounting />} />
           <Route path="/tax" element={<Tax />} />
+          <Route path="/ads" element={<Ads />} />
           <Route path="/insights" element={<Insights />} />
           <Route path="/profile" element={<Profile />} />
         </Route>

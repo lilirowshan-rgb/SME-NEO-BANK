@@ -15,7 +15,7 @@
 }
 
 .pub-header-inner {
-  max-width: 1200px;
+  max-width: 1328px;
   margin: 0 auto;
   padding: 14px 24px;
   display: flex;
@@ -44,7 +44,7 @@
 }
 
 .pub-section {
-  max-width: 1200px;
+  max-width: 1328px;
   margin: 0 auto;
   padding: 56px 24px;
   scroll-margin-top: 70px;
@@ -374,8 +374,12 @@
   color: #dbe2f0;
 }
 
-.about .photo-slot {
-  min-height: 360px;
+.about-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  align-self: center;
+  border-radius: 24px;
 }
 
 /* ---------- Who ---------- */
@@ -513,8 +517,13 @@
   margin-bottom: 28px;
 }
 
+.services-head > div:first-child {
+  flex: 1 1 520px;
+}
+
 .services-head .chips {
-  max-width: 520px;
+  flex: 0 1 560px;
+  justify-content: flex-end;
 }
 
 .acc-list {
@@ -780,7 +789,7 @@
 }
 
 .pub-footer-inner {
-  max-width: 1200px;
+  max-width: 1328px;
   margin: 0 auto;
   padding: 24px;
   display: flex;
@@ -914,7 +923,7 @@
 }
 
 .signup {
-  max-width: 1200px;
+  max-width: 1328px;
   margin: 0 auto;
   padding: 40px 24px 64px;
   display: grid;

@@ -4,6 +4,7 @@ import Chips from '../components/Chips';
 import PlusIcon from '../components/PlusIcon';
 import PublicHeader from '../components/PublicHeader';
 import blueMark from '../assets/digipay-blue.png';
+import aboutApp from '../assets/about-app.jpg';
 import digikala from '../assets/digikala.png';
 import { MERCHANTS, PANEL_CARDS, SERVICE_CATEGORIES, SERVICES, STATS, TESTIMONIALS, type ServiceCategory } from '../lib/landing';
 import { merchantLogo } from '../lib/merchants';
@@ -139,7 +140,7 @@ export default function Landing() {
                 می‌خوانیم و آن را به کارت، اعتبار و نقدینگی سریع‌تر تبدیل می‌کنیم.
               </p>
             </div>
-            <div className="photo-slot photo-slot-dark">[عکس: تیم یا بنیان‌گذاران]</div>
+            <img src={aboutApp} alt="اپ دیجی‌پی بیزینس روی گوشی: موجودی کیف پول کسب‌وکار، تسویه زودهنگام و تراکنش‌های اخیر" className="about-photo" />
           </div>
         </section>
 

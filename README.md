@@ -16,6 +16,7 @@ All numbers, rates and names in `[brackets]` are sample placeholders from the de
 | `/cash` | Sub-wallets, 30-day balance forecast, automatic rules, bills, bank accounts |
 | `/accounting` | P&L by period, expenses by category, transactions to review, wholesale invoices, CSV export |
 | `/tax` | Moadian e-invoices (filter + resubmit rejected), VAT summary & payment, tax calendar |
+| `/ads` | Advertising & growth: campaigns (pause/resume, create), budget and results, daily estimate, growth tools |
 | `/insights` | Benchmarks by sector, sales seasonality, percentile position, suggestions |
 | `/profile` | Business info (editable), network connections, credit-score factors, documents, people |
 

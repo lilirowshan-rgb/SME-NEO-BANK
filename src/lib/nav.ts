@@ -9,6 +9,7 @@ export const NAV_ITEMS: NavItem[] = [
   { path: '/cash', label: 'مدیریت نقدینگی' },
   { path: '/accounting', label: 'حسابداری' },
   { path: '/tax', label: 'مالیات و سامانه مودیان' },
+  { path: '/ads', label: 'تبلیغات و رشد' },
   { path: '/insights', label: 'بینش کسب‌وکار' },
   { path: '/profile', label: 'پروفایل و اشخاص' },
   { path: '/faq', label: 'سوالات متداول' },
