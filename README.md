@@ -41,6 +41,27 @@ Other commands: `npm test` (unit + UI tests), `npm run build` (type-check + prod
 If PowerShell says *running scripts is disabled*, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once.
 The Vazirmatn font is bundled, so the site works offline.
 
+## Deploy (Docker / Kubernetes / Hamravesh Darkube)
+
+The repo ships a production `Dockerfile` (Node build → nginx) and `nginx.conf`:
+
+- listens on **port 80**; every app route (`/dashboard`, `/loan`, …) falls back to `index.html`
+- **`/healthz`** returns `200 ok` — use it for liveness and readiness probes
+- hashed files under `/assets/` are cached for a year; `index.html` is `no-cache`, so new deploys show up immediately
+- no environment variables or volumes are needed (static site, stateless — safe to run several replicas)
+
+```sh
+docker build -t sme-neo-bank .
+docker run -p 8080:80 sme-neo-bank      # http://localhost:8080
+```
+
+If Docker Hub is unreachable or rate-limited (common inside Iran), point the base images at a mirror:
+`--build-arg REGISTRY=hub.hamdocker.ir/library`. For an npm mirror add `--build-arg NPM_REGISTRY=<url>`.
+
+**Darkube:** create an app from this Git repository with the Dockerfile build (Dockerfile path `Dockerfile`,
+build context `.`), set the **port to 80**, add the `REGISTRY` build arg above if the build can't pull images,
+point the health check at `/healthz`, then attach your domain and enable HTTPS in the app's domain settings.
+
 ## Code map
 
 - `src/pages/` — one component per page
