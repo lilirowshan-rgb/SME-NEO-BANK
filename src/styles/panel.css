@@ -536,53 +536,6 @@
   font-size: 14px;
 }
 
-/* ---------- Responsive ---------- */
-
-@media (max-width: 1200px) {
-  .grid-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .grid-main-side,
-  .grid-side-main {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .app-shell {
-    flex-direction: column;
-  }
-  .sidebar {
-    position: static;
-    height: auto;
-    flex-basis: auto;
-  }
-  .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .sidebar-spacer,
-  .sidebar-credit {
-    display: none;
-  }
-  .app-main {
-    padding: 20px 16px 40px;
-  }
-  .grid-3,
-  .grid-2 {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-@media (max-width: 560px) {
-  .grid-4 {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .page-title {
-    font-size: 24px;
-  }
-}
-
 /* ---------- Dashboard ---------- */
 
 .early {
@@ -595,6 +548,7 @@
 
 .early-main {
   flex: 1 1 420px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -699,4 +653,490 @@
 .net-card strong {
   font-size: 16px;
   color: var(--text);
+}
+
+/* ---------- Mobile-only pieces (hidden on desktop) ---------- */
+
+.mobile-bar,
+.tabbar,
+.scrim,
+.sidebar-close,
+.row-date-inline {
+  display: none;
+}
+
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat-foot-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.chip-instant {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.chip[aria-checked='true'] {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+
+.chip-instant[aria-checked='true'] {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.row-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.row-date {
+  min-width: 60px;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1200px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-main-side,
+  .grid-side-main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Phone & small tablet: app layout with top bar, drawer menu and bottom tab bar. */
+@media (max-width: 900px) {
+  .app-shell {
+    display: block;
+  }
+
+  .mobile-bar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 16px;
+    background: var(--navy);
+    color: #fff;
+  }
+
+  .mobile-bar .logo img {
+    height: 24px;
+  }
+
+  .mobile-bar-btn,
+  .sidebar-close {
+    width: 44px;
+    height: 44px;
+    margin-left: -10px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    width: min(300px, 86vw);
+    height: auto;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.22s ease, visibility 0.22s;
+    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.25);
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .sidebar.open {
+    transform: none;
+    visibility: visible;
+  }
+
+  .sidebar-close {
+    display: flex;
+  }
+
+  .scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(11, 27, 63, 0.45);
+  }
+
+  .tabbar {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+    background: #fff;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -4px 16px rgba(11, 27, 63, 0.06);
+  }
+
+  .tabbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-height: 52px;
+    border: 0;
+    border-radius: 12px;
+    background: none;
+    color: var(--text-3);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .tabbar-item:hover {
+    text-decoration: none;
+  }
+
+  .tabbar-item.active {
+    color: var(--blue);
+    background: var(--blue-tint);
+  }
+
+  .app-main {
+    padding: 18px 16px calc(96px + env(safe-area-inset-bottom));
+  }
+
+  .page {
+    gap: 16px;
+  }
+
+  .grid {
+    gap: 12px;
+  }
+
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+
+  .card-title {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Header: badge on top, title, then full-width action buttons. */
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .page-header-text {
+    flex-basis: auto;
+  }
+
+  .page-title {
+    font-size: 23px;
+    line-height: 1.5;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .page-header > .badge {
+    align-self: flex-start;
+    order: -1;
+  }
+
+  .page-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .page-actions .badge {
+    grid-column: 1 / -1;
+    justify-self: start;
+    order: -1;
+  }
+
+  .page-actions > .btn:nth-child(2):last-child {
+    grid-column: 1 / -1;
+  }
+
+  .page-actions .btn {
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  /* Stats: compact 2-column tiles. */
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat {
+    padding: 14px;
+    border-radius: 16px;
+    gap: 6px;
+  }
+
+  .stat-label,
+  .stat-top .stat-label {
+    font-size: 12px;
+  }
+
+  .stat-top {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+    gap: 2px 6px;
+  }
+
+  .stat-unit {
+    font-size: 11px;
+  }
+
+  .stat-foot {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .stat-foot-split {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chip-action {
+    justify-content: center;
+    min-height: 36px;
+  }
+
+  /* Filters: one swipeable row instead of wrapping. */
+  .chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+
+  .chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .card .chips {
+    margin-inline: -18px;
+    padding-inline: 18px;
+  }
+
+  /* List rows: title block full width, amount/actions aligned below. */
+  .row {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+
+  .row-date {
+    display: none;
+  }
+
+  .row-date-inline {
+    display: block;
+  }
+
+  .row-actions {
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .row-actions .row-amount {
+    margin-left: auto;
+  }
+
+  /* Tables become stacked cards. */
+  .table-cards thead {
+    display: none;
+  }
+
+  .table-cards,
+  .table-cards tbody,
+  .table-cards tr,
+  .table-cards td {
+    display: block;
+    width: 100%;
+  }
+
+  .table-cards tr {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .table-cards td.cell-main {
+    order: -1;
+  }
+
+  .table-cards td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 0;
+    border: 0;
+    text-align: left;
+  }
+
+  .table-cards td::before {
+    content: attr(data-label);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-3);
+    text-align: right;
+  }
+
+  .table-cards td.cell-main {
+    display: block;
+    text-align: right;
+    padding-bottom: 8px;
+  }
+
+  .table-cards td.cell-main::before,
+  .table-cards td.cell-action::before {
+    content: none;
+  }
+
+  .table-cards td.cell-action:empty {
+    display: none;
+  }
+
+  .table-cards td.cell-action .btn {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .alert {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: right;
+  }
+
+  .alert .btn {
+    width: 100%;
+  }
+
+  .early {
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .early-main,
+  .early-quote {
+    flex-basis: 100%;
+  }
+
+  .early-quote {
+    padding: 4px 14px 14px;
+  }
+
+  .early-actions .btn {
+    padding: 0 16px;
+  }
+
+  .inline-form .btn {
+    flex: 1;
+  }
+
+  .profile-head {
+    gap: 16px;
+  }
+
+  .profile-head > .logo-slot {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  .score-card {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+
+  .chart-dense .chart-axis > div:nth-child(even) {
+    visibility: hidden;
+  }
+
+  .chart-dense .chart-top {
+    font-size: 9px;
+  }
+
+  .legend {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+  }
 }

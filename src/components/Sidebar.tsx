@@ -1,12 +1,25 @@
 import { Link, NavLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../lib/nav';
 import { STORE } from '../lib/store';
+import Icon from './Icon';
 import Logo from './Logo';
 
-export default function Sidebar() {
+interface SidebarProps {
+  id?: string;
+  /** Drawer state on small screens; ignored on desktop where the sidebar is always shown. */
+  open?: boolean;
+  onClose?: () => void;
+}
+
+export default function Sidebar({ id, open = false, onClose }: SidebarProps) {
   return (
-    <aside className="sidebar">
-      <Logo on="dark" />
+    <aside id={id} className={`sidebar${open ? ' open' : ''}`}>
+      <div className="sidebar-top">
+        <Logo on="dark" />
+        <button type="button" className="sidebar-close" aria-label="بستن منو" onClick={onClose}>
+          <Icon name="close" />
+        </button>
+      </div>
 
       <div className="sidebar-store">
         <div className="sidebar-store-label">فروشگاه</div>

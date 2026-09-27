@@ -115,7 +115,7 @@ export default function Tax() {
             />
           </div>
           <div className="table-wrap">
-            <table className="table">
+            <table className="table table-cards">
               <thead>
                 <tr>
                   <th>شماره</th>
@@ -131,17 +131,17 @@ export default function Tax() {
               <tbody>
                 {visible.map((inv) => (
                   <tr key={inv.id}>
-                    <td className="muted">{faDigits(inv.id)}</td>
-                    <td>
+                    <td className="muted" data-label="شماره">{faDigits(inv.id)}</td>
+                    <td className="cell-main">
                       <strong>{inv.buyer}</strong>
                       {inv.error && <div className="tone-red" style={{ fontSize: 12, marginTop: 4 }}>{inv.error}</div>}
                     </td>
-                    <td className="muted">{inv.type}</td>
-                    <td className="num">{fa(inv.amount)}</td>
-                    <td>
+                    <td className="muted" data-label="نوع صورتحساب">{inv.type}</td>
+                    <td className="num" data-label="مبلغ (تومان)">{fa(inv.amount)}</td>
+                    <td data-label="وضعیت">
                       <span className={`badge badge-sm ${STATUS_LABEL[inv.status].className}`}>{STATUS_LABEL[inv.status].label}</span>
                     </td>
-                    <td>
+                    <td className="cell-action">
                       {inv.status === 'rejected' && (
                         <button type="button" className="btn btn-dark btn-sm" onClick={() => resubmit(inv.id)}>
                           اصلاح و ارسال

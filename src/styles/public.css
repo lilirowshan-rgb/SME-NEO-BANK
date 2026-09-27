@@ -1068,9 +1068,6 @@
   .reviews {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .login-hero {
-    order: -1;
-  }
 }
 
 @media (max-width: 680px) {
@@ -1137,5 +1134,313 @@
 @media (max-width: 480px) {
   .pub-header .pub-login {
     display: none;
+  }
+}
+
+.step-count {
+  display: none;
+}
+
+/* ---------- Phones: public pages ---------- */
+
+@media (max-width: 680px) {
+  .pub-section {
+    padding: 36px 16px;
+  }
+
+  .section-kicker {
+    margin-bottom: 6px;
+  }
+
+  .section-lead {
+    font-size: 14px;
+  }
+
+  /* Hero: equal full-width buttons and non-overlapping visual. */
+  .hero {
+    padding-top: 28px;
+    gap: 28px;
+  }
+
+  .hero-text {
+    gap: 18px;
+  }
+
+  .hero-lead {
+    font-size: 15px;
+    line-height: 1.95;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-visual {
+    height: 330px;
+  }
+
+  .hero-visual .photo-slot {
+    inset: 0 18px 0 18px;
+    font-size: 0;
+    padding: 0;
+  }
+
+  .hero-card {
+    top: 24px;
+    width: 250px;
+    height: 156px;
+    padding: 16px 18px;
+  }
+
+  .hero-note {
+    top: auto;
+    bottom: 22px;
+    width: 210px;
+    padding: 14px 16px;
+  }
+
+  .hero-note-amount {
+    font-size: 19px;
+  }
+
+  /* Stats: 2 × 2. */
+  .stats-card {
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 12px;
+  }
+
+  .stats-value {
+    font-size: 34px;
+  }
+
+  .stats-unit,
+  .stats-label {
+    font-size: 13px;
+  }
+
+  .merchants-head {
+    margin-bottom: 18px;
+  }
+
+  .section-title-sm {
+    font-size: 22px;
+    line-height: 1.6;
+  }
+
+  .merchant-logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .merchants li,
+  .merchant-you {
+    font-size: 12px;
+  }
+
+  .about {
+    gap: 24px;
+    border-radius: 24px;
+  }
+
+  .who-card {
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+
+  .who-card h3 {
+    font-size: 19px;
+  }
+
+  .who-card .btn {
+    align-self: stretch !important;
+  }
+
+  /* Services accordion: category + icon on one line, title below. */
+  .services-head {
+    margin-bottom: 18px;
+  }
+
+  .acc-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 6px 12px;
+    padding: 18px;
+  }
+
+  .acc-cat {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 12px;
+  }
+
+  .acc-icon {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 36px;
+    height: 36px;
+  }
+
+  .acc-main {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .acc-title {
+    font-size: 17px;
+    gap: 6px 8px;
+  }
+
+  .acc-sub {
+    font-size: 14px;
+  }
+
+  .acc-body {
+    padding: 0 18px 18px;
+  }
+
+  .svc-body {
+    gap: 18px;
+  }
+
+  .svc-desc .btn {
+    align-self: stretch !important;
+  }
+
+  .svc-terms th,
+  .svc-terms td {
+    padding: 12px 14px;
+  }
+
+  .panel-grid {
+    gap: 10px;
+  }
+
+  .panel-card {
+    padding: 20px;
+  }
+
+  /* Reviews. */
+  .reviews-head {
+    gap: 14px;
+  }
+
+  .rating {
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+
+  .reviews-nav {
+    width: 100%;
+  }
+
+  .reviews-nav .badge {
+    margin-left: auto;
+    white-space: normal;
+  }
+
+  .review {
+    padding: 20px;
+  }
+
+  /* Footer stacks. */
+  .pub-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .pub-footer nav {
+    flex-wrap: wrap;
+    gap: 10px 20px;
+  }
+
+  /* Login: form first, then the marketing panel. */
+  .login {
+    padding: 0;
+    gap: 0;
+  }
+
+  .login-side {
+    padding: 20px 16px 28px;
+  }
+
+  .login-hero {
+    order: 0;
+    margin: 0 12px 12px;
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .login-form h1 {
+    font-size: 26px;
+  }
+
+  /* Signup: short step counter instead of six cramped labels. */
+  .signup-hint {
+    display: none;
+  }
+
+  .signup {
+    padding: 22px 16px 40px;
+    gap: 16px;
+  }
+
+  .signup-main h1 {
+    font-size: 26px;
+  }
+
+  .step-count {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--blue-link);
+    margin-bottom: -8px;
+  }
+
+  .signup .stepper {
+    gap: 4px;
+  }
+
+  .signup .stepper-label {
+    display: none;
+  }
+
+  .signup form.card {
+    padding: 22px 18px !important;
+  }
+
+  .form-actions .btn {
+    flex: 1;
+  }
+
+  .faq {
+    padding: 32px 16px 56px;
+  }
+
+  .faq-hero {
+    margin-bottom: 6px;
+  }
+
+  .faq-hero .chips {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 680px) {
+  .services-head .chips {
+    flex: 1 1 100%;
+    justify-content: flex-start;
   }
 }

@@ -32,13 +32,25 @@ it('blocks signup step 1 until the fields are valid', async () => {
   expect(screen.getByRole('heading', { name: 'اطلاعات کسب‌وکار' })).toBeInTheDocument();
 });
 
-it('updates the early-settlement quote and wallet balance', async () => {
+it('settles instantly into the wallet by default', async () => {
   const user = userEvent.setup();
   renderAt(<Dashboard />);
-  await user.click(screen.getByRole('button', { name: '۵ روز زودتر' }));
+  expect(screen.getByRole('radio', { name: /آنی/ })).toBeChecked();
+  expect(screen.getByText('۳٬۵۷۶٬۰۰۰ تومان')).toBeInTheDocument();
+  const settleButtons = screen.getAllByRole('button', { name: /تسویه آنی/ });
+  await user.click(settleButtons[settleButtons.length - 1]);
+  expect(screen.getByText(fmt(412_500_000 + 238_400_000 - 3_576_000))).toBeInTheDocument();
+  expect(screen.getByText('تسویه آنی انجام شد')).toBeInTheDocument();
+});
+
+it('schedules a 5-day early settlement without changing the wallet yet', async () => {
+  const user = userEvent.setup();
+  renderAt(<Dashboard />);
+  await user.click(screen.getByRole('radio', { name: '۵ روز زودتر' }));
   expect(screen.getByText('۹۵۳٬۶۰۰ تومان')).toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'تأیید و دریافت' }));
-  expect(screen.getByText(fmt(412_500_000 + 238_400_000 - 953_600))).toBeInTheDocument();
+  expect(screen.getByText(fmt(412_500_000))).toBeInTheDocument();
+  expect(screen.getByText('در حال واریز · ظرف ۲۴ ساعت')).toBeInTheDocument();
 });
 
 function fmt(n: number) {

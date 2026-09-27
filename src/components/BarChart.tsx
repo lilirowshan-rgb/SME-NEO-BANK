@@ -25,15 +25,17 @@ interface BarChartProps {
   table: { head: string[]; rows: string[][] };
   max?: number;
   gap?: number;
+  /** Extra class, e.g. "chart-dense" to thin out axis labels on phones. */
+  className?: string;
 }
 
 /** Vertical (grouped) bar chart with per-group hover/focus tooltips. RTL: first group renders on the right. */
-export default function BarChart({ groups, height, ariaLabel, table, max, gap = 6 }: BarChartProps) {
+export default function BarChart({ groups, height, ariaLabel, table, max, gap = 6, className }: BarChartProps) {
   const [active, setActive] = useState<string | null>(null);
   const top = max ?? Math.max(...groups.flatMap((g) => g.bars.map((b) => b.value)));
 
   return (
-    <figure className="chart" style={{ margin: 0 }}>
+    <figure className={`chart${className ? ` ${className}` : ''}`} style={{ margin: 0 }}>
       <div className="chart-plot" style={{ height, gap }} aria-hidden="true" onMouseLeave={() => setActive(null)}>
         {groups.map((g) => (
           <div

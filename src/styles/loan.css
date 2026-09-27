@@ -455,3 +455,63 @@
 .loan-badge {
   align-self: flex-start;
 }
+
+@media (max-width: 640px) {
+  .offer-config {
+    padding: 18px;
+    gap: 20px;
+  }
+  .preapproved {
+    padding: 18px;
+    gap: 14px;
+  }
+  .preapproved-amount {
+    font-size: 24px;
+  }
+  .preapproved-basis,
+  .preapproved-for {
+    font-size: 12px;
+  }
+  .amount-value {
+    font-size: 22px;
+  }
+  .term-pill {
+    min-height: 48px;
+    font-size: 15px;
+  }
+  .method-card {
+    min-height: 0;
+  }
+  .summary {
+    padding: 20px 18px;
+  }
+  .summary-row {
+    font-size: 14px;
+  }
+  .stepper-label {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .flow-card,
+  .done-card {
+    padding: 22px 18px;
+  }
+  .flow-actions,
+  .done-actions {
+    gap: 10px;
+  }
+  .flow-actions .btn,
+  .done-actions .btn {
+    flex: 1;
+    padding: 0 12px;
+  }
+  .done-actions {
+    width: 100%;
+  }
+  .done-title {
+    font-size: 22px;
+  }
+  .otp-field {
+    max-width: none;
+  }
+}

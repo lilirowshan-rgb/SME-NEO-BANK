@@ -194,7 +194,7 @@ export default function Accounting() {
           <input ref={fileInput} type="file" accept="image/*,application/pdf" hidden onChange={(e) => onFile(e.target.files?.[0])} />
           <div className="rows">
             {reviews.map((r) => (
-              <div key={r.id} className="row" style={{ flexWrap: 'wrap' }}>
+              <div key={r.id} className="row">
                 <div className="row-main" style={{ minWidth: 220 }}>
                   <div className="row-title">{r.title}</div>
                   <div className="row-sub">
@@ -202,6 +202,7 @@ export default function Accounting() {
                     {r.receipt && <> · رسید: {r.receipt}</>}
                   </div>
                 </div>
+                <div className="row-actions">
                 <div className="row-amount ltr">{faSigned(r.amount)}</div>
                 <button type="button" className="btn btn-secondary btn-sm" onClick={() => attach(r.id)}>
                   {r.receipt ? 'تغییر رسید' : 'پیوست رسید'}
@@ -216,6 +217,7 @@ export default function Accounting() {
                 >
                   تأیید
                 </button>
+                </div>
               </div>
             ))}
             {reviews.length === 0 && <p className="muted" style={{ padding: '14px 0' }}>همه تراکنش‌ها بررسی شده‌اند.</p>}

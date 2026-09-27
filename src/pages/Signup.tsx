@@ -81,7 +81,7 @@ export default function Signup() {
         <div className="pub-header-inner">
           <Logo />
           <div className="pub-actions" style={{ gap: 16 }}>
-            <span className="muted" style={{ fontSize: 14 }}>
+            <span className="muted signup-hint" style={{ fontSize: 14 }}>
               قبلاً فروشنده دیجی‌کالا بوده‌اید؟
             </span>
             <Link to="/login" className="btn btn-secondary btn-sm">
@@ -100,6 +100,9 @@ export default function Signup() {
             </p>
           </div>
 
+          <p className="step-count" aria-hidden="true">
+            مرحله {fa(Math.min(step + 1, STEPS.length))} از {fa(STEPS.length)} · {done ? 'ثبت شد' : STEPS[step]}
+          </p>
           <ol aria-label="مراحل ثبت‌نام" className="stepper">
             {STEPS.map((label, i) => {
               const state = done || i < step ? 'done' : i === step ? 'current' : 'todo';

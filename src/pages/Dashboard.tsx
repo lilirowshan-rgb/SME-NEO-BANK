@@ -4,7 +4,7 @@ import BarChart from '../components/BarChart';
 import StatCard from '../components/StatCard';
 import { useToast } from '../components/useToast';
 import { fa, faDec, faSigned } from '../lib/format';
-import { EARLY_SETTLEMENT_OPTIONS, PENDING_SETTLEMENT, quoteEarlySettlement } from '../lib/settlement';
+import { PENDING_SETTLEMENT, SETTLEMENT_OPTIONS, quoteEarlySettlement } from '../lib/settlement';
 import { STORE } from '../lib/store';
 
 // Million toman, sample data from the design draft.
@@ -20,7 +20,7 @@ const CASHFLOW = [
 const MONEY_PATH = [
   { title: 'مشتری پرداخت می‌کند', text: 'در دیجی‌کالا یا با درگاه دیجی‌پی (نقدی، اقساطی، کیف پول)', color: 'var(--blue)' },
   { title: 'در انتظار تسویه', text: 'حتی اگر مشتری اقساطی خریده باشد، کل مبلغ برای شما ثبت می‌شود', color: 'var(--blue)' },
-  { title: 'تسویه عادی یا زودهنگام', text: 'طبق دوره قرارداد، یا ظرف ۲۴ ساعت با کارمزد', color: 'var(--orange)' },
+  { title: 'تسویه عادی، زودهنگام یا آنی', text: 'طبق دوره قرارداد، ظرف ۲۴ ساعت، یا آنی در چند ثانیه با کارمزد', color: 'var(--orange)' },
   { title: 'کیف پول کسب‌وکار', text: 'موجودی قابل خرج با کارت یا انتقال به حساب بانکی', color: 'var(--blue)' },
   { title: 'خرج و برنامه‌ریزی', text: 'تأمین‌کننده، حقوق، قبوض، مالیات و اقساط', color: 'var(--navy)' },
 ];
@@ -32,21 +32,42 @@ const TRANSACTIONS = [
   { title: 'واریز درگاه دیجی‌پی', sub: 'فروش سایت · ۱۴۲ تراکنش', date: '۲ مهر', amount: 31_750_000, tint: 'var(--green-tint)' },
 ];
 
+function Bolt() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
+    </svg>
+  );
+}
+
+type Settled = { instant: boolean; received: number } | null;
+
 export default function Dashboard() {
   const [showEarly, setShowEarly] = useState(true);
-  const [days, setDays] = useState(14);
-  const [settled, setSettled] = useState(false);
+  const [optionId, setOptionId] = useState(SETTLEMENT_OPTIONS[0].id);
+  const [settled, setSettled] = useState<Settled>(null);
   const { show, toast } = useToast();
 
-  const option = EARLY_SETTLEMENT_OPTIONS.find((o) => o.days === days)!;
+  const option = SETTLEMENT_OPTIONS.find((o) => o.id === optionId)!;
   const quote = quoteEarlySettlement(PENDING_SETTLEMENT, option.feeRate);
   const pending = settled ? 0 : PENDING_SETTLEMENT;
-  const wallet = 412_500_000 + (settled ? quote.received : 0);
+  // Instant settlement lands in the wallet right away; the others arrive within 24 hours.
+  const wallet = 412_500_000 + (settled?.instant ? settled.received : 0);
+
+  const openInstant = () => {
+    setOptionId('instant');
+    setShowEarly(true);
+    window.setTimeout(() => document.getElementById('early-title')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 0);
+  };
 
   const confirm = () => {
-    setSettled(true);
+    setSettled({ instant: option.instant, received: quote.received });
     setShowEarly(false);
-    show(`${fa(quote.received)} تومان به کیف پول کسب‌وکار واریز شد`);
+    show(
+      option.instant
+        ? `${fa(quote.received)} تومان همین حالا به کیف پول کسب‌وکار واریز شد`
+        : `${fa(quote.received)} تومان ظرف ۲۴ ساعت به کیف پول کسب‌وکار واریز می‌شود`,
+    );
   };
 
   return (
@@ -58,8 +79,9 @@ export default function Dashboard() {
         </div>
         <div className="page-actions">
           <span className="badge badge-gold">داده‌های نمونه</span>
-          <button type="button" className="btn btn-primary" onClick={() => setShowEarly(true)} disabled={settled}>
-            تسویه زودهنگام
+          <button type="button" className="btn btn-primary" onClick={openInstant} disabled={Boolean(settled)}>
+            <Bolt />
+            تسویه آنی
           </button>
           <button type="button" className="btn btn-secondary" onClick={() => show('انتقال وجه در نسخه نمونه فعال نیست')}>
             انتقال وجه
@@ -67,7 +89,7 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <div className="grid grid-4">
+      <div className="grid grid-4 stats">
         <StatCard
           label="موجودی کیف پول کسب‌وکار"
           value={fa(wallet)}
@@ -78,7 +100,19 @@ export default function Dashboard() {
           label="در انتظار تسویه"
           value={fa(pending)}
           unit="تومان"
-          foot={<span className="tone-blue">{settled ? 'تسویه زودهنگام انجام شد' : 'تسویه عادی: ۱۹ مهر (۱۴ روز دیگر)'}</span>}
+          foot={
+            settled ? (
+              <span className="tone-green">{settled.instant ? 'تسویه آنی انجام شد' : 'در حال واریز · ظرف ۲۴ ساعت'}</span>
+            ) : (
+              <span className="stat-foot-split">
+                <span className="tone-blue">تسویه عادی: ۱۹ مهر (۱۴ روز دیگر)</span>
+                <button type="button" className="chip-action" onClick={openInstant}>
+                  <Bolt />
+                  تسویه آنی
+                </button>
+              </span>
+            )
+          }
         />
         <StatCard label="فروش شهریور" value={faDec(1.24, 2)} unit="میلیارد تومان" foot={<span className="tone-green">۸٪ بیشتر از مرداد</span>} />
         <StatCard
@@ -97,18 +131,30 @@ export default function Dashboard() {
               تسویه زودهنگام
             </h2>
             <p className="muted">
-              مبلغ در انتظار تسویه: {fa(PENDING_SETTLEMENT)} تومان. چند روز زودتر می‌خواهید دریافت کنید؟
+              مبلغ در انتظار تسویه: {fa(PENDING_SETTLEMENT)} تومان. همین حالا بگیرید، یا انتخاب کنید چند روز زودتر دریافت کنید.
             </p>
-            <div role="group" aria-label="چند روز زودتر" className="chips chips-sm">
-              {EARLY_SETTLEMENT_OPTIONS.map((o) => (
-                <button key={o.days} type="button" className="chip" aria-pressed={o.days === days} onClick={() => setDays(o.days)}>
-                  {fa(o.days)} روز زودتر
+            <div role="radiogroup" aria-label="زمان دریافت" className="chips chips-sm">
+              {SETTLEMENT_OPTIONS.map((o) => (
+                <button
+                  key={o.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={o.id === optionId}
+                  className={`chip${o.instant ? ' chip-instant' : ''}`}
+                  onClick={() => setOptionId(o.id)}
+                >
+                  {o.instant && <Bolt />}
+                  {o.label}
                 </button>
               ))}
             </div>
             <p className="card-note">نرخ‌ها نمونه است و باید با تعرفه واقعی جایگزین شود.</p>
           </div>
           <div className="early-quote">
+            <div className="kv">
+              <span>زمان واریز</span>
+              <strong className={option.instant ? 'tone-blue' : ''}>{option.arrival}</strong>
+            </div>
             <div className="kv">
               <span>کارمزد ({faDec(option.feeRate * 100, 1)}٪)</span>
               <strong>{fa(quote.fee)} تومان</strong>
@@ -119,7 +165,14 @@ export default function Dashboard() {
             </div>
             <div className="early-actions">
               <button type="button" className="btn btn-primary" onClick={confirm}>
-                تأیید و دریافت
+                {option.instant ? (
+                  <>
+                    <Bolt />
+                    تسویه آنی
+                  </>
+                ) : (
+                  'تأیید و دریافت'
+                )}
               </button>
               <button type="button" className="btn btn-secondary" onClick={() => setShowEarly(false)}>
                 بستن
@@ -210,10 +263,11 @@ export default function Dashboard() {
                   <div className="row-title">{t.title}</div>
                   <div className="row-sub">{t.sub}</div>
                 </div>
-                <div className="row-sub" style={{ minWidth: 60 }}>
-                  {t.date}
+                <div className="row-date row-sub">{t.date}</div>
+                <div className="row-end">
+                  <div className={`row-amount ltr ${t.amount > 0 ? 'tone-green' : ''}`}>{faSigned(t.amount)}</div>
+                  <div className="row-date-inline row-sub">{t.date}</div>
                 </div>
-                <div className={`row-amount ltr ${t.amount > 0 ? 'tone-green' : ''}`}>{faSigned(t.amount)}</div>
               </div>
             ))}
           </div>

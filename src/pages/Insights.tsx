@@ -116,6 +116,7 @@ export default function Insights() {
           <p className="card-note" style={{ marginTop: -6 }}>شاخص فروش ماهانه (میانگین = ۱۰۰)</p>
           <BarChart
             height={240}
+            className="chart-dense"
             ariaLabel={`شاخص فروش ماهانه صنف ${d.label}`}
             max={Math.max(140, ...d.season)}
             groups={d.season.map((v, i) => ({

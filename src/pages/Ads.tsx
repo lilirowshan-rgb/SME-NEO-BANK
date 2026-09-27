@@ -126,7 +126,7 @@ export default function Ads() {
         <section className="card">
           <h2 className="card-title">کمپین‌های شما</h2>
           <div className="table-wrap">
-            <table className="table">
+            <table className="table table-cards">
               <thead>
                 <tr>
                   <th>کمپین</th>
@@ -140,15 +140,15 @@ export default function Ads() {
               <tbody>
                 {campaigns.map((c) => (
                   <tr key={c.id}>
-                    <td>
+                    <td className="cell-main">
                       <strong>{c.name}</strong>
                       <div className="row-sub">{CHANNELS[c.channel].title}</div>
                     </td>
-                    <td className="num">{fa(c.budget)}</td>
-                    <td className="num">{fa(c.spent)}</td>
-                    <td className="num">{fa(c.clicks)}</td>
-                    <td className="num tone-green">{fa(c.sales)}</td>
-                    <td>
+                    <td className="num" data-label="بودجه روزانه">{fa(c.budget)}</td>
+                    <td className="num" data-label="هزینه‌شده">{fa(c.spent)}</td>
+                    <td className="num" data-label="کلیک">{fa(c.clicks)}</td>
+                    <td className="num tone-green" data-label="فروش">{fa(c.sales)}</td>
+                    <td data-label="فعال">
                       <Toggle
                         label={`کمپین ${c.name}`}
                         checked={c.active}
