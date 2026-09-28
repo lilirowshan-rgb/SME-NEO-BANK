@@ -5,9 +5,9 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { path: '/dashboard', label: 'داشبورد و پرداخت‌ها' },
+  { path: '/sales', label: 'فروش از همه کانال‌ها' },
   { path: '/loan', label: 'وام و اعتبار' },
   { path: '/cash', label: 'مدیریت نقدینگی' },
-  { path: '/suppliers', label: 'پرداخت به تأمین‌کننده' },
   { path: '/accounting', label: 'حسابداری' },
   { path: '/tax', label: 'مالیات و سامانه مودیان' },
   { path: '/ads', label: 'تبلیغات و رشد' },

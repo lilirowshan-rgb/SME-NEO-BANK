@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Chips from '../components/Chips';
 import HeroStore from '../components/HeroStore';
-import ScfSection from '../components/ScfSection';
 import PlusIcon from '../components/PlusIcon';
 import PublicHeader from '../components/PublicHeader';
 import blueMark from '../assets/digipay-blue.png';
@@ -248,8 +247,6 @@ export default function Landing() {
             })}
           </div>
         </section>
-
-        <ScfSection />
 
         {/* Panel preview */}
         <section id="panel" className="pub-section">

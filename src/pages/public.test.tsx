@@ -57,11 +57,15 @@ function fmt(n: number) {
   return n.toLocaleString('fa-IR');
 }
 
-it('pays a network supplier the discounted amount right away', async () => {
-  const { default: Suppliers } = await import('./Suppliers');
+
+it('raises the credit limit after connecting a bank account', async () => {
+  const { default: Sales } = await import('./Sales');
   const user = userEvent.setup();
-  renderAt(<Suppliers />);
-  expect(screen.getByText('۹۵٬۰۶۸٬۴۹۳ تومان')).toBeInTheDocument();
-  await user.click(screen.getByRole('button', { name: 'تأیید فاکتور و پرداخت به تأمین‌کننده' }));
-  expect(screen.getAllByText('۹۵٬۰۶۸٬۴۹۳').length).toBeGreaterThan(0);
+  renderAt(<Sales />);
+  expect(screen.getByText('۸۵۰ میلیون')).toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'اتصال حساب بانکی' }));
+  await user.click(screen.getByRole('radio', { name: 'ملت' }));
+  await user.click(screen.getByRole('checkbox'));
+  await user.click(screen.getByRole('button', { name: 'ادامه در صفحه بانک' }));
+  expect(screen.getByText('۱٫۶ میلیارد')).toBeInTheDocument();
 });

@@ -75,8 +75,8 @@ export default function LoanPage() {
                   <div className="preapproved-amount">تا ۸۵۰ میلیون تومان</div>
                   <div className="preapproved-basis">بر اساس ۳۰ ماه سابقه فروش · امتیاز اعتباری ۷۴۲</div>
                 </div>
-                <Link to="/profile" className="preapproved-upsell">
-                  با بارگذاری اظهارنامه ۱۴۰۴، سقف تا <strong>۱٫۵ میلیارد</strong> افزایش می‌یابد ←
+                <Link to="/sales" className="preapproved-upsell">
+                  با اتصال حساب بانکی و سامانه مودیان، سقف تا <strong>۱٫۸۵ میلیارد</strong> افزایش می‌یابد ←
                 </Link>
               </div>
 

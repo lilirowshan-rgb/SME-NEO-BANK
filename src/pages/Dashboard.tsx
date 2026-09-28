@@ -114,7 +114,7 @@ export default function Dashboard() {
             )
           }
         />
-        <StatCard label="فروش شهریور" value={faDec(1.24, 2)} unit="میلیارد تومان" foot={<span className="tone-green">۸٪ بیشتر از مرداد</span>} />
+        <StatCard label="فروش شهریور در دیجی‌پی" value={faDec(1.24, 2)} unit="میلیارد تومان" foot={<Link to="/sales">افزودن فروش کارتخوان و نقدی ←</Link>} />
         <StatCard
           dark
           label="اعتبار در دسترس"
